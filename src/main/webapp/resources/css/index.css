@@ -1,0 +1,108 @@
+body {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.after-login{
+    margin: 0 auto;
+    width: 100%;
+}
+
+.nav {
+    overflow: hidden;
+    height: 40px;
+}
+
+.nav-login {
+    overflow: hidden;
+    background-color: black;
+    height: 60px;
+    position: sticky;
+}
+
+.nav a {
+    float: left;
+    display: block;
+    color: #000000;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 30px;
+}
+
+.nav-login a {
+    float: left;
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    padding: 20px 30px;
+}
+
+.right {
+    float: right;
+}
+
+.nav a .right {
+    display: block;
+    color: #000000;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 30px;
+}
+
+.nav-login a .right {
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+}
+
+.button-black {
+    background-color: #000000;
+    color: #ffffff;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+}
+
+.button-black:hover {
+    border: 2px solid goldenrod;
+    color: goldenrod;
+}
+
+.main {
+    height: 600px;
+}
+
+.footer {
+    background-color: black;
+    height: 10%;
+    color: white;
+    text-align: center;
+    margin: auto;
+    padding-top: 30px;
+}
+
+.mypage-button {
+    display: block;
+    margin: 18px auto;
+}
+
+.img-area {
+    display: block;
+    margin: auto;
+    padding-bottom: 80px;
+}
+
+#img {
+    margin: auto;
+
+}
+
+.button-area {
+    margin: 0 auto;
+    padding-top: 30px;
+    width: 100%;
+}

@@ -1,0 +1,46 @@
+.form-board {
+    margin: auto;
+    padding-top: 50px;
+    width: 55%;
+    overflow: hidden;
+}
+
+.form-member {
+    margin: auto;
+    padding-top: 150px;
+    width: 45%;
+    overflow: hidden;
+}
+
+.form-comment {
+    margin: auto;
+    padding-top: 50px;
+    width: 55%;
+    overflow: hidden;
+}
+
+h2 h3 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#context {
+    height: 300px;
+}
+
+#profile-area {
+    float: left;
+    width: 50%;
+}
+
+#input-area {
+    float: left;
+    width: 50%;
+}
+
+
+#button-area {
+    margin-top: 30px;
+    width: 100%;
+}
+
