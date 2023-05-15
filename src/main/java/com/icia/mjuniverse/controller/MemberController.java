@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.lang.reflect.Member;
 import java.util.List;
 
 @Controller
@@ -90,6 +91,8 @@ public class MemberController {
         String loginEmail = (String)session.getAttribute("loginEmail");
         MemberDTO memberDTO = memberService.findByEmail(loginEmail);
         model.addAttribute("member", memberDTO);
+//            MemberDTO dto = memberService.findById(memberDTO.getId());
+//            model.addAttribute("member1", dto);
         Long i = memberDTO.getId();
         System.out.println("i = " + i);
         if(memberDTO.getMemberProfile()==1) {
@@ -114,6 +117,30 @@ public class MemberController {
         MemberDTO dto = memberService.findById(memberDTO.getId());
         model.addAttribute("member", dto);
         return "redirect:/member/detail?id="+memberDTO.getId();
+    }
+
+    @GetMapping("/list")
+    public String findAll(Model model) {
+        List<MemberDTO> memberDTOList = memberService.findAll();
+        model.addAttribute("memberList", memberDTOList);
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("member-admin", memberDTO);
+        return "memberPages/memberList";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") Long id) {
+        memberService.delete(id);
+        return "redirect:/member/list";
+    }
+
+    @GetMapping("/detail-admin")
+    public String findById(@RequestParam("id") Long id, Model model, HttpSession session) {
+        MemberDTO memberDTO = memberService.findById(id);
+        model.addAttribute("member-admin", memberDTO);
+        System.out.println("id = " + id + ", model = " + model);
+        return "redirect:/member/detail?id="+id;
+
     }
 
 

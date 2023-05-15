@@ -18,7 +18,14 @@
     <script src="/resources/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<%@include file="../components/navLogin.jsp" %>
+<c:choose>
+    <c:when test="${sessionScope.loginEmail == 'admin'}">
+        <%@include file="../components/navAdmin.jsp" %>
+    </c:when>
+    <c:otherwise>
+        <%@include file="../components/navLogin.jsp" %>
+    </c:otherwise>
+</c:choose>
 <div class="main">
     <form action="/board/update" method="post" enctype="multipart/form-data" class="form-board" id="save-form">
         <h2>자유게시판</h2>
@@ -33,7 +40,8 @@
                     value="<fmt:formatDate value="${board.boardCreatedDate}" pattern="yyyy-MM-dd hh:mm"></fmt:formatDate>"
                     disabled> <br>
         내용
-        <textarea name="boardContents" id="board-contents" class="form-control" cols="30" rows="10">${board.boardContents}</textarea>
+        <textarea name="boardContents" id="board-contents" class="form-control" cols="30"
+                  rows="10">${board.boardContents}</textarea>
         <div class="button-area">
             <input type="submit" class="btn btn-success" value="수정">
         </div>

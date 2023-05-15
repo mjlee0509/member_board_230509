@@ -25,6 +25,7 @@ public class CommentController {
         System.out.println("commentDTO = " + commentDTO);
         commentService.save(commentDTO);
         List<CommentDTO> commentDTOList = commentService.findAll(commentDTO.getBoardId());
+        System.out.println(commentDTOList);
         return new ResponseEntity<>(commentDTOList, HttpStatus.OK);
     }
 }

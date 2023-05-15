@@ -21,7 +21,14 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </head>
 <body>
-<%@include file="../components/navLogin.jsp" %>
+<c:choose>
+    <c:when test="${sessionScope.loginEmail == 'admin'}">
+        <%@include file="../components/navAdmin.jsp" %>
+    </c:when>
+    <c:otherwise>
+        <%@include file="../components/navLogin.jsp" %>
+    </c:otherwise>
+</c:choose>
 <div class="main">
     <form action="/board/update" method="post" enctype="multipart/form-data" class="form-board">
         <h2>자유게시판</h2>
@@ -54,6 +61,9 @@
                 <input type="button" value="수정" class="btn btn-dark" onclick="board_update()">
                 <input type="button" value="삭제" class="btn btn-danger" onclick="board_delete()">
             </c:if>
+            <c:if test="${sessionScope.loginEmail == 'admin'}">
+                <input type="button" value="삭제" class="btn btn-danger" onclick="board_delete()">
+            </c:if>
             <input type="button" value="목록" class="btn btn-success" onclick="list()">
         </div>
     </form>
@@ -82,7 +92,7 @@
 <%--                            <td>${comment.id}</td>--%>
                             <td>${comment.commentWriter}</td>
                             <td>
-                                <fmt:formatDate value="${comment.commentCreatedDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate>
+                                <fmt:formatDate value="${comment.commentCreatedDate}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
                             </td>
                             <td>${comment.commentContents}</td>
                         </tr>
@@ -130,17 +140,17 @@
             },
             success: function (res) {
                 let output = "<table>";
-                output += "<tr>"
-                // output += "<th>id</th>"
-                output += "<th>작성자</th>"
-                output += "<th>작성시간</th>"
-                output += "<th></th>"
-                output += "</tr>"
+                output += "<tr>";
+                output += "<th>id</th>"
+                output += "<th>작성자</th>";
+                output += "<th>작성시간</th>";
+                output += "<th></th>";
+                output += "</tr>";
                 for(let i in res) {
-                    output += "<tr>"
-                    // output += "<td>" + res[i].id + "</td>";
+                    output += "<tr>";
+                    output += "<td>" + res[i].id + "</td>";
                     output += "<td>" + res[i].commentWriter + "</td>";
-                    output += "<td>" + res[i].moment(res[i].commentCreatedDate).format("YYYY-MM=DD HH:mm") + "</td>";
+                    output += "<td>" + moment(res[i].commentCreatedDate).format("YYYY-MM-DD HH:mm") + "</td>";
                     output += "<td>" + res[i].commentContents + "</td>";
                 }
                 output += "</table>"

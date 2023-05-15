@@ -20,6 +20,13 @@ body {
     position: sticky;
 }
 
+.nav-admin {
+    overflow: hidden;
+    background: linear-gradient(darkgoldenrod, #cc9656);
+    height: 60px;
+    position: sticky;
+}
+
 .nav a {
     float: left;
     display: block;
@@ -30,6 +37,15 @@ body {
 }
 
 .nav-login a {
+    float: left;
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    padding: 20px 30px;
+}
+
+.nav-admin a {
     float: left;
     display: block;
     color: #ffffff;
@@ -51,6 +67,13 @@ body {
 }
 
 .nav-login a .right {
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+}
+
+.nav-admin a .right {
     display: block;
     color: #ffffff;
     text-align: center;

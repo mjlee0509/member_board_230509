@@ -18,7 +18,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 </head>
 <body>
-<%@include file="../components/navLogin.jsp" %>
+<c:choose>
+    <c:when test="${sessionScope.loginEmail == 'admin'}">
+        <%@include file="../components/navAdmin.jsp" %>
+    </c:when>
+    <c:otherwise>
+        <%@include file="../components/navLogin.jsp" %>
+    </c:otherwise>
+</c:choose>
 <div class="main">
     <%--    검색창    --%>
     <div class="container" id="search-area">
@@ -127,4 +134,6 @@
     </div>
 </div>
 </body>
+<script>
+</script>
 </html>

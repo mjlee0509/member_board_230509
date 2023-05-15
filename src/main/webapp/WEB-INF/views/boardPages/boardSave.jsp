@@ -16,7 +16,14 @@
     <script src="/resources/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<%@include file="../components/navLogin.jsp" %>
+<c:choose>
+    <c:when test="${sessionScope.loginEmail == 'admin'}">
+        <%@include file="../components/navAdmin.jsp" %>
+    </c:when>
+    <c:otherwise>
+        <%@include file="../components/navLogin.jsp" %>
+    </c:otherwise>
+</c:choose>
 <div class="main">
     <form action="/board/save" method="post" enctype="multipart/form-data" class="form-board">
         <h2>글쓰기</h2>

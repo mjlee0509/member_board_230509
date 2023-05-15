@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Member;
+import java.util.List;
 
 @Service
 public class MemberService {
@@ -64,5 +65,14 @@ public class MemberService {
 
     public void update(MemberDTO memberDTO) {
         memberRepository.update(memberDTO);
+    }
+
+    public List<MemberDTO> findAll() {
+        List<MemberDTO> memberDTOList = memberRepository.findAll();
+        return memberDTOList;
+    }
+
+    public void delete(Long id) {
+        memberRepository.delete(id);
     }
 }

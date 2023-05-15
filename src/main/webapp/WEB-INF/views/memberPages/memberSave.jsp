@@ -36,11 +36,11 @@
             <p id="email-check-result"></p>
 
             <label for="member-password">비밀번호</label>
-            <input type="text" name="memberPassword" id="member-password" class="form-control" placeholder="비밀번호">
+            <input type="text" name="memberPassword" id="member-password" class="form-control" placeholder="비밀번호" onblur="pass_check()">
             <p id="pass-check-result"></p>
             
             <label for="member-password-confirm">비밀번호 확인</label>
-            <input type="text" name="memberPasswordCOnfirm" id="member-password-confirm" class="form-control" placeholder="비밀번호를 다시 입력해주세요">
+            <input type="text" name="memberPasswordConfirm" id="member-password-confirm" class="form-control" placeholder="비밀번호를 다시 입력해주세요">
             <p id="pass-confirm-result"></p>
 
             <label for="member-mobile">연락처</label>
@@ -85,6 +85,51 @@
             }
         })
     };
+
+    const memberPassword = document.getElementById("member-password");
+    const passCheckResult = document.getElementById("pass-check-result");
+    const memberPasswordConfirm = document.getElementById("member-password-confirm");
+    const passConfirmResult = document.getElementById("pass-confirm-result");
+
+    memberPassword.addEventListener("blur", function (e) {
+        e.preventDefault();
+        const password = memberPassword.value;
+        const expPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_-])[A-Za-z\d!@#$%^&*()_-]{8,20}$/
+        if (password.length == 0) {
+            passCheckResult.innerHTML = "필수 입력사항입니다";
+            passCheckResult.style.color = "red";
+        } else if (!password.match(expPassword)) {
+            passCheckResult.innerHTML = "영문(대+소문자),특수문자, 숫자 포함 8~20자";
+            passCheckResult.style.color = "red";
+        } else if (password.match(expPassword)) {
+            passCheckResult.innerHTML = "안전한 비밀번호입니다";
+            passCheckResult.style.color = "green";
+            memberPassword.blur();
+        }
+    })
+
+    memberPasswordConfirm.addEventListener("blur", function (e) {
+        e.preventDefault();
+        const password = memberPassword.value;
+        const passConfirm = memberPasswordConfirm.value;
+        if (passConfirm.length == 0) {
+            passConfirmResult.innerHTML = "비밀번호를 다시 입력해주세요";
+            passConfirmResult.style.color = "red";
+        } else if (passConfirm != password) {
+            passConfirmResult.innerHTML = "비밀번호가 일치하지 않습니다";
+            passConfirmResult.style.color = "red";
+        } else if (passConfirm == password) {
+            passConfirmResult.innerHTML = "확인되었습니다";
+            passConfirmResult.style.color = "green";
+            memberPasswordConfirm.blur();
+        }
+    })
+
+
+
+
+
+
 
 
 
